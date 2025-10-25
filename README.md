@@ -1,10 +1,19 @@
 # panabit-app-lucky
 lucky for panabit
+
 # Panabit Lucky APX 安装包
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Lucky Version](https://lucky666.cn/img/logo.svg)](https://github.com/gdy666/lucky)
-[![Panabit](https://prod0b43e6f-pic10.ysjianzhan.cn/upload/panabit_1200_9bxx.png)](https://www.panabit.com/)
+
+<!-- Lucky 图标：宽 100px，自适应高度 -->
+<a href="https://github.com/gdy666/lucky">
+  <img src="https://lucky666.cn/img/logo.svg" width="100">
+</a>
+
+<!-- Panabit 图标：宽度自适应 50%，保持比例 -->
+<a href="https://www.panabit.com/">
+  <img src="https://prod0b43e6f-pic10.ysjianzhan.cn/upload/panabit_1200_9bxx.png" width="50%">
+</a>
 
 在 Panabit 智能应用网关上运行 [Lucky](https://github.com/gdy666/lucky) 的 APX 应用封装包。
 
