@@ -17,17 +17,22 @@ lucky for panabit
 
 在 Panabit 智能应用网关上运行 [Lucky](https://github.com/gdy666/lucky) 的 APX 应用封装包。
 
+> Lucky 是一个强大的软硬路由公网神器，支持 IPv4/IPv6 端口转发、反向代理、DDNS、WOL、Stun 内网穿透等多种功能。本项目将 Lucky 封装为 Panabit APX 应用包，实现一键安装和便捷管理。
+
 ## 📋 目录
 
 - [功能特性](#功能特性)
 - [快速开始](#快速开始)
 - [使用说明](#使用说明)
 - [配置管理](#配置管理)
+- [Lucky 功能介绍](#-lucky-功能介绍)
 - [升级说明](#升级说明)
 - [故障排除](#故障排除)
 - [技术细节](#技术细节)
+- [安全建议](#安全建议)
 - [致谢](#致谢)
 - [许可证](#许可证)
+- [更新日志](#更新日志)
 
 ## ✨ 功能特性
 
@@ -124,6 +129,24 @@ floweye nat listproxy | grep WAN | awk '{print $5}'
   "ConfigVersion": "2.19.5"
 }
 ```
+
+## 🎯 Lucky 功能介绍
+
+Lucky 是一个强大的软硬路由公网神器，主要功能包括：
+
+- **端口转发** - IPv4/IPv6 端口转发，支持黑白名单
+- **反向代理** - Web 服务反向代理，支持 HTTP 基本认证
+- **动态域名(DDNS)** - 支持多个 DNS 服务商，自定义回调
+- **Stun 内网穿透** - 无需公网 IPv4 地址即可实现内网穿透
+- **网络唤醒(WOL)** - 远程控制设备唤醒和关机
+- **计划任务** - 可视化 Cron，支持 Windows 系统
+- **ACME 证书** - 自动申请和续签 SSL/TLS 证书
+- **网络存储** - 支持本地存储、WebDAV、阿里云盘
+- **FTP 服务器** - 内置 FTP 服务
+- **WebDAV** - WebDAV 文件服务
+- **FileBrowser** - Web 文件管理器
+
+详细功能请访问 [Lucky 官方项目](https://github.com/gdy666/lucky)。
 
 ## 🔄 升级说明
 
@@ -290,7 +313,7 @@ Panabit 是北京派网软件有限公司的品牌/商标，本项目中的引�
 
 如遇到问题或有建议，欢迎：
 
-1. 提交 [Issue](https://github.com/your-repo/issues)
+1. 提交 [Issue](https://github.com/mengxunlingxue/panabit-app-lucky/issues)
 2. 查看 Lucky 官方文档
 3. 检查本文档的故障排除章节
 
