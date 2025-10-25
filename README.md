@@ -125,16 +125,6 @@ floweye nat listproxy | grep WAN | awk '{print $5}'
 }
 ```
 
-### 修改配置
-
-```bash
-# 编辑配置文件
-vi /etc/lucky/lucky.conf
-
-# 修改后重启服务
-/usr/panabit/app/lucky/appctrl restart
-```
-
 ## 🔄 升级说明
 
 ### 升级时会保留的内容
