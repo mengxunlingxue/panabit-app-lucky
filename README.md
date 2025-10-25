@@ -246,7 +246,7 @@ vi /etc/lucky/lucky.conf
 | 架构 | 说明 | 检测方式 |
 |------|------|---------|
 | ARM64 | `aarch64` | `uname -m` |
-| Linux x86_64 | `x86_64` | 默认 |
+| Linux x86_64 | `x86_64` | `uname -m` |
 
 ### 脚本说明
 
