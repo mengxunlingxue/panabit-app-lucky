@@ -1,8 +1,9 @@
 # panabit-app-lucky
-lucky for panabit
+
 # 页面参考截图
-Panabit-app-Lucky/install.png
-Panabit-app-Lucky/webmgt.png
+![install](Panabit-app-Lucky/install.png)
+![webmgt](Panabit-app-Lucky/webmgt.png)
+
 
 # Panabit Lucky APX 安装包
 
