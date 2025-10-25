@@ -3,7 +3,7 @@ lucky for panabit
 
 # Panabit Lucky APX 安装包
 
-<p align="center">
+<p>
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" height="40">
   </a>
