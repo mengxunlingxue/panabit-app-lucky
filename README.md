@@ -164,9 +164,6 @@ fi
 # 检查进程
 ps aux | grep lucky
 
-# 检查配置文件
-cat /etc/lucky/lucky.conf
-
 # 查看二进制文件
 ls -la /usr/panabit/app/lucky/bin/lucky
 
