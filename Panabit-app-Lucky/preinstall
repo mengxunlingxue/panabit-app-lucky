@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# 停止可能运行的 lucky 进程
+pkill -f lucky 2>/dev/null || true
+
+# 删除旧版文件
+rm -rf /usr/ramdisk/app/lucky 2>/dev/null || true
+rm -rf /usr/panabit/app/lucky 2>/dev/null || true
+
+exit 0

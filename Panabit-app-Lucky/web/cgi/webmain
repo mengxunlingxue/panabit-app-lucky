@@ -1,0 +1,18 @@
+#!/bin/sh
+
+echo "Content-Type: text/html; charset=utf-8"
+echo ""
+
+cat << 'EOF'
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0;url=/html/App/lucky/main.html">
+    <title>Lucky</title>
+</head>
+<body>
+    <p>Loading...</p>
+</body>
+</html>
+EOF

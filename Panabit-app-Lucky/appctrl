@@ -1,0 +1,104 @@
+#!/bin/sh
+. /etc/PG.conf
+
+#SYS ENV
+RAMDISK="/usr/ramdisk/"
+WEBROOT="/usr/ramdisk/admin"
+
+APPNAME="lucky"
+APPROOT="${PGPATH}/app/${APPNAME}"
+APPCONF="${PGETC}/App/${APPNAME}/lucky"
+
+app_status()
+{
+    if [ ! -f ${APPCONF} ]; then
+        echo "disable"
+        return
+    fi
+
+    status=`grep "status=" ${APPCONF} | cut -d"=" -f2`
+    if [ "${status}" = "enable" ]; then
+        echo "enable"
+    else
+        echo "disable"
+    fi
+}
+
+web_start()
+{
+    HTMLDIR=${WEBROOT}/html/App/${APPNAME}
+    CGIDIR=${WEBROOT}/cgi-bin/App/${APPNAME}
+    TMPWEBDIR=${RAMDISK}/app/${APPNAME}/web
+
+    mkdir -p ${CGIDIR}
+    mkdir -p ${HTMLDIR}
+
+    chmod +x ${APPROOT}/web/cgi/*
+
+    cp -Rf ${APPROOT}/web/cgi/* ${CGIDIR}
+    cp -Rf ${APPROOT}/web/html/* ${HTMLDIR}
+
+    [ -d ${TMPWEBDIR} ] && rm -rf ${TMPWEBDIR}
+}
+
+bin_start()
+{
+    ${APPROOT}/bin/luckyctl start
+    return
+}
+
+app_start()
+{
+    app_stop
+    web_start
+    bin_start
+    return 0
+}
+
+app_stop()
+{
+    ${APPROOT}/bin/luckyctl stop
+    return 0
+}
+
+app_enable()
+{
+    grep -v "status=" ${APPCONF} > ${APPCONF}.bak 2>/dev/null || echo "" > ${APPCONF}.bak
+    echo "status=enable" >> ${APPCONF}.bak
+    mv ${APPCONF}.bak ${APPCONF}
+
+    app_start
+}
+
+app_disable()
+{
+    grep -v "status=" ${APPCONF} > ${APPCONF}.bak 2>/dev/null || echo "" > ${APPCONF}.bak
+    echo "status=disable" >> ${APPCONF}.bak
+    mv ${APPCONF}.bak ${APPCONF}
+
+    app_stop
+}
+
+case "$1" in 
+    "start")
+        app_start
+        ;;
+    "upload_ui")
+        web_start
+        ;;
+    "stop")
+        app_stop
+        ;;
+    "enable")
+        app_enable
+        ;;
+    "disable")
+        app_disable
+        ;;
+    "status")
+        app_status
+        ;;
+    *)
+        echo "unknown action!"
+        ;;
+esac

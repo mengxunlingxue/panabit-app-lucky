@@ -1,0 +1,49 @@
+#!/bin/sh
+
+. /etc/PG.conf
+
+APPNAME="lucky"
+APPROOT="${PGPATH}/app/${APPNAME}"
+LUCKYCONF="/etc/lucky/lucky.conf"
+CONFDIR="${PGETC}/App/${APPNAME}"
+APPCONF="${CONFDIR}/lucky"
+
+start_server()
+{
+    # 检查是否启用
+    if [ -f "${APPCONF}" ]; then
+        status=`grep "status=" ${APPCONF} | cut -d"=" -f2`
+        [ "${status}" = "disable" ] && return
+    fi
+    
+    # 停止旧进程
+    stop_server
+    
+    # 启动服务
+    if [ -f ${APPROOT}/bin/lucky ] && [ -f ${LUCKYCONF} ]; then
+        cd ${APPROOT}/bin
+        ./lucky -c ${LUCKYCONF} >/dev/null 2>&1 &
+    fi
+}
+
+stop_server()
+{
+    # 停止所有lucky进程
+    for pid in `ps -axwww | grep "lucky" | grep -vE "grep|luckyctl|appctrl" | awk '{print $1}'`
+    do
+        [ "${pid}" = $$ ] && continue
+        kill -9 ${pid} >/dev/null 2>&1
+    done
+}
+
+case "${1}" in
+    "start")
+        start_server
+        ;;
+    "stop")
+        stop_server
+        ;;
+    *)
+        echo "UNKNOWN_ACTION"
+        ;;
+esac

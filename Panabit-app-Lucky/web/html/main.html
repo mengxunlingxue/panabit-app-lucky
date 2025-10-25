@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk">
+    <title>Lucky</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+            border-bottom: 2px solid #1890ff;
+            padding-bottom: 10px;
+        }
+        .info-box {
+            background: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .access-url {
+            background: #fff;
+            border: 1px solid #d9d9d9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 16px;
+            word-break: break-all;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #1890ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 10px 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #40a9ff;
+        }
+        .btn-success {
+            background: #52c41a;
+        }
+        .btn-success:hover {
+            background: #73d13d;
+        }
+        .tips {
+            background: #fffbe6;
+            border-left: 4px solid #faad14;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .tips h3 {
+            margin-top: 0;
+            color: #fa8c16;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        .status-running {
+            background: #d4edda;
+            color: #155724;
+        }
+        .credits {
+            background: #f0f0f0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #666;
+        }
+        .credits a {
+            color: #1890ff;
+            text-decoration: none;
+        }
+        .credits a:hover {
+            text-decoration: underline;
+        }
+        .reference {
+            background: #f6ffed;
+            border-left: 4px solid #52c41a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .reference h3 {
+            margin-top: 0;
+            color: #389e0d;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lucky 大吉大利 <span class="status status-running" id="status">运行中</span></h1>
+        
+        <div class="info-box">
+            <h3 style="margin-top:0;">访问说明</h3>
+            <p>Lucky 服务已在后台运行，请通过以下地址访问 Lucky Web 管理界面：</p>
+        </div>
+
+        <h3>【访问地址】</h3>
+        <div class="access-url" id="lucky-url">
+            正在获取访问地址...
+        </div>
+
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="javascript:void(0)" class="btn btn-success" id="open-btn" onclick="openLucky()">
+                > 打开 Lucky Web 管理界面
+            </a>
+            <button class="btn" onclick="copyUrl()">复制地址</button>
+        </div>
+
+        <div class="tips">
+            <h3>【使用提示】</h3>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li><strong>默认端口：</strong>16601</li>
+                <li><strong>默认用户名：</strong>666</li>
+                <li><strong>默认密码：</strong>666</li>
+                <li><strong>建议：</strong>首次登录后请及时修改默认密码</li>
+            </ul>
+        </div>
+
+        <div class="tips">
+            <h3>【重要提醒】</h3>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>请确保 Panabit 的 <strong>MGT 接口</strong>已开启</li>
+                <li>需要访问 MGT 接口的 <strong>16601 端口</strong></li>
+                <li>如果无法访问，请检查防火墙设置</li>
+            </ul>
+        </div>
+        
+        <div class="reference">
+            <h3>【WAN口地址获取参考】</h3>
+            <p>如需在 Lucky 中获取 WAN 口地址，可以参考以下项目的实现方式：</p>
+            <p><strong>参考项目：</strong> <a href="https://github.com/panabit-community/ddns-go-manager" target="_blank">panabit-community/ddns-go-manager</a></p>
+            <p>示例命令（在 Lucky 的命令获取IP功能中使用）：</p>
+            <p><code>floweye nat listproxy | grep WAN | awk '{print $5}'</code></p>
+            <p style="margin-top: 10px; font-size: 13px; color: #666;">感谢 ddns-go-manager 项目作者提供的参考！</p>
+        </div>
+        
+        <div class="credits">
+            <p><strong>Lucky 项目地址：</strong> <a href="https://github.com/gdy666/lucky" target="_blank">https://github.com/gdy666/lucky</a></p>
+            <p>感谢原作者 @gdy666 ！</p>
+        </div>
+    </div>
+
+    <script>
+        var hostname = window.location.hostname;
+        var luckyUrl = 'http://' + hostname + ':16601';
+        
+        document.getElementById('lucky-url').innerHTML = '<strong>' + luckyUrl + '</strong>';
+        
+        function openLucky() {
+            window.open(luckyUrl, '_blank');
+        }
+        
+        function copyUrl() {
+            var url = luckyUrl;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(function() {
+                    alert('地址已复制到剪贴板！\n\n' + url);
+                }).catch(function() {
+                    fallbackCopy(url);
+                });
+            } else {
+                fallbackCopy(url);
+            }
+        }
+        
+        function fallbackCopy(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert('地址已复制到剪贴板！\n\n' + text);
+            } catch (err) {
+                prompt('请手动复制以下地址：', text);
+            }
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
