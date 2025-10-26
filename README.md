@@ -8,9 +8,6 @@
 # Panabit Lucky APX 安装包
 
 <p>
-  <a href="https://opensource.org/licenses/MIT">
-    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" height="40">
-  </a>
   <a href="https://github.com/gdy666/lucky">
     <img src="https://lucky666.cn/img/logo.svg" height="40">
   </a>
